@@ -7,33 +7,20 @@ import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 })
 export class CardComponent implements OnInit {
 
-  imgSrc:string='./assets/default.png'
-  @Input() status:string
-  @Input() cardID:number
-  @Output() fromFiglioEvnt = new EventEmitter<{ cardID:number ,  status:string }>();
+
+  @Input()  cardData:{ cardID: number , status:string , path:string }
+  @Output() fromFiglioEvnt = new EventEmitter<{ cardID: number , status:string , path:string }>();
 
   constructor() { }
 
   ngOnInit(): void {
-    if (this.status=='default') {
-      this.imgSrc='./assets/default.png'
-    } else {
-       this.imgSrc='./assets/3cuori.png'
-    }
+    console.log("-----------------nuova istanza--------------------------")
   }
 
   flipCard() { 
-    console.log("sono la carta "+this.cardID+" e cambio stato")
-    if (this.status=='default') {
-      this.status='flipped'
-      this.imgSrc='./assets/3cuori.png'
-    } else {
-      this.status='default'
-      this.imgSrc='./assets/default.png'
-    }
-
+    console.log("sono la carta "+this.cardData.cardID+" e cambio stato")
     // gestione dell'evento da inviare al padre
-    this.fromFiglioEvnt.emit( {cardID:this.cardID , status: this.status } )
+    this.fromFiglioEvnt.emit( this.cardData )
   }
 
 

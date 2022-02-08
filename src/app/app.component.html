@@ -1,6 +1,5 @@
-<app-card *ngFor="let s of cardStatus;let i=index"  
-  [status]="s"
-  [cardID]="i"
+<app-card *ngFor="let s of cards;let i=index"  
+  [cardData]="s"
   (fromFiglioEvnt)="fromFiglioEvntHandlr($event)" >
 </app-card>
 
@@ -8,5 +7,5 @@
 Lo stato delle carte è il seguente
 
 <ul>
-  <li  *ngFor="let s of cardStatus;let i=index" > lo stato della carta numero {{i}} è {{s}} </li>
+  <li  *ngFor="let s of cards;let i=index" > lo stato della carta numero {{s.cardID}} è {{s.status}} </li>
 </ul>
